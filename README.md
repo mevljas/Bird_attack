@@ -1,1 +1,2 @@
-# Bird_attack
+# Bird attack
+2D Android game.
