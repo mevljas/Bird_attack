@@ -1,6 +1,8 @@
 package com.example.birdattack;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.view.SurfaceView;
 
 public class GameView extends SurfaceView implements Runnable {
@@ -13,6 +15,7 @@ public class GameView extends SurfaceView implements Runnable {
 
     private boolean isPlaying;
     private int screenX, screenY;
+    private Paint paint;
     private Background background1, background2;
 
     public GameView(Context context, int screenX, int screenY) {
@@ -25,6 +28,8 @@ public class GameView extends SurfaceView implements Runnable {
         background2 = new Background(screenX, screenY, getResources());
 
         background2.x = screenX;
+
+        paint = new Paint();
 
     }
 
@@ -59,6 +64,16 @@ public class GameView extends SurfaceView implements Runnable {
     }
 
     private void draw () {
+
+        if (getHolder().getSurface().isValid()) {
+
+            Canvas canvas = getHolder().lockCanvas();
+            canvas.drawBitmap(background1.background, background1.x, background1.y, paint);
+            canvas.drawBitmap(background2.background, background1.x, background1.y, paint);
+
+            // show canvas on screen
+            getHolder().unlockCanvasAndPost(canvas);
+        }
 
     }
 
