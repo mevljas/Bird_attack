@@ -17,6 +17,7 @@ public class GameView extends SurfaceView implements Runnable {
     private int screenX, screenY;
     public static float screenRatioX, screenRatioY; // for compatibility
     private Paint paint;
+    private Flight flight;
     private Background background1, background2;
 
     public GameView(Context context, int screenX, int screenY) {
@@ -33,6 +34,8 @@ public class GameView extends SurfaceView implements Runnable {
 
         background1 = new Background(screenX, screenY, getResources());
         background2 = new Background(screenX, screenY, getResources());
+
+        flight = new Flight(screenY, getResources());
 
         background2.x = screenX;
 
@@ -77,6 +80,8 @@ public class GameView extends SurfaceView implements Runnable {
             Canvas canvas = getHolder().lockCanvas();
             canvas.drawBitmap(background1.background, background1.x, background1.y, paint);
             canvas.drawBitmap(background2.background, background2.x, background2.y, paint);
+
+            canvas.drawBitmap(flight.getFlight(), flight.x, flight.y, paint);
 
             // show canvas on screen
             getHolder().unlockCanvasAndPost(canvas);
