@@ -9,7 +9,7 @@ import static com.example.birdattack.GameView.screenRatioY;
 
 public class Flight {
 
-    int x, y, width, height;
+    int x, y, width, height, wingCounter;
     Bitmap flight1, flight2;
 
     Flight(int screenY, Resources res) {
@@ -26,5 +26,18 @@ public class Flight {
         width *= (int) screenRatioX;
         height *= (int) screenRatioY;
 
+    }
+
+
+    Bitmap getFlight() {
+        if (wingCounter == 0) {
+            wingCounter++;
+            return flight1;
+
+        }
+
+        wingCounter--;
+
+        return flight2;
     }
 }
