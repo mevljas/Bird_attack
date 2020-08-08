@@ -9,6 +9,7 @@ import static com.example.birdattack.GameView.screenRatioY;
 
 public class Flight {
 
+    public boolean isGoingUp = false;
     int x, y, width, height, wingCounter;
     Bitmap flight1, flight2;
 

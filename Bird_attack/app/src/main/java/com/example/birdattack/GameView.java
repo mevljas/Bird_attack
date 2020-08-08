@@ -3,6 +3,7 @@ package com.example.birdattack;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.view.MotionEvent;
 import android.view.SurfaceView;
 
 public class GameView extends SurfaceView implements Runnable {
@@ -71,6 +72,21 @@ public class GameView extends SurfaceView implements Runnable {
             background2.x = screenX;
         }
 
+        if (flight.isGoingUp) {
+            flight.y -= 30 * screenRatioY;
+        } else {
+            flight.y += 30 * screenRatioY;
+        }
+
+        if (flight.y < 0) {
+            flight.y = 0;
+        }
+
+        if (flight.y > screenY - flight.height) {
+            flight.y = screenY - flight.height;
+        }
+
+
     }
 
     private void draw () {
@@ -106,7 +122,7 @@ public class GameView extends SurfaceView implements Runnable {
     }
 
 
-    public void pause () {
+    public void pause() {
         // Stops the thread
         try {
             isPlaying = false;
@@ -115,5 +131,24 @@ public class GameView extends SurfaceView implements Runnable {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                if (event.getX() < screenX / 2) {
+                    flight.isGoingUp = true;
+                }
+
+                break;
+
+            case MotionEvent.ACTION_UP:
+
+                flight.isGoingUp = false;
+                break;
+        }
+
+        return true;
     }
 }
