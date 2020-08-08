@@ -13,6 +13,18 @@ public class GameView extends SurfaceView implements Runnable {
 
     private boolean isPlaying;
 
+    private Background background1, background2;
+
+    public GameView(Context context, int screenX, int screenY) {
+        super(context);
+
+        background1 = new Background(screenX, screenY, getResources());
+        background2 = new Background(screenX, screenY, getResources());
+
+        background2.x = screenX;
+
+    }
+
     @Override
     public void run () {
 
