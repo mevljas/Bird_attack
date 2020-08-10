@@ -160,6 +160,14 @@ public class GameView extends SurfaceView implements Runnable {
             canvas.drawBitmap(background1.background, background1.x, background1.y, paint);
             canvas.drawBitmap(background2.background, background2.x, background2.y, paint);
 
+            if (isGameOver) {
+                isPlaying = false;
+                canvas.drawBitmap(flight.getDead(), flight.x, flight.y, paint);
+                getHolder().unlockCanvasAndPost(canvas);
+                return;
+
+            }
+
             canvas.drawBitmap(flight.getFlight(), flight.x, flight.y, paint);
 
             for (Bullet bullet : bullets) {
