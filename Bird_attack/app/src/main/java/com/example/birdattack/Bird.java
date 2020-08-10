@@ -9,6 +9,7 @@ import static com.example.birdattack.GameView.screenRatioY;
 
 public class Bird {
 
+    public int speed = 20;
     int x, y, width, height, birdCounter = 1;
     Bitmap bird1, bird2, bird3, bird4;
 

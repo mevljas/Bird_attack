@@ -8,6 +8,7 @@ import android.view.SurfaceView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class GameView extends SurfaceView implements Runnable {
 
@@ -21,6 +22,8 @@ public class GameView extends SurfaceView implements Runnable {
     private int screenX, screenY;
     public static float screenRatioX, screenRatioY; // for compatibility
     private Paint paint;
+    private Bird[] birds;
+    private Random random;
     private List<Bullet> bullets;
     private Flight flight;
     private Background background1, background2;
@@ -48,6 +51,16 @@ public class GameView extends SurfaceView implements Runnable {
         background2.x = screenX;
 
         paint = new Paint();
+
+        birds = new Bird[4];
+
+        for (int i = 0; i < 4; i++) {
+
+            Bird bird = new Bird(getResources());
+            birds[i] = bird;
+        }
+
+        random = new Random();
 
     }
 
@@ -107,6 +120,27 @@ public class GameView extends SurfaceView implements Runnable {
         for (Bullet bullet : trash) {
 
             bullets.remove(bullet);
+        }
+
+        for (Bird bird : birds) {
+
+            bird.x -= bird.speed;
+
+            if (bird.x + bird.width < 0) {
+
+                int bound = (int) (30 * screenRatioX);
+                bird.speed = random.nextInt(bound);
+
+                if (bird.speed < 10 * screenRatioX) {
+                    bird.speed = (int) (10 * screenRatioX);
+                }
+
+                bird.x = screenX;
+                bird.y = random.nextInt(screenY - bird.height);
+
+            }
+
+            //if (Rect.intersects())
         }
 
 
