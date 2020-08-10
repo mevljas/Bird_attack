@@ -49,6 +49,7 @@ public class Flight {
         shoot5 = Bitmap.createScaledBitmap(shoot5, width, height, false);
 
         dead = BitmapFactory.decodeResource(res, R.drawable.dead);
+        dead = Bitmap.createScaledBitmap(dead, width, height, false);
 
 
         y = screenY / 2;

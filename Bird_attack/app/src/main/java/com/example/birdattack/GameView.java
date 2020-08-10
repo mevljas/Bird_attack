@@ -115,6 +115,16 @@ public class GameView extends SurfaceView implements Runnable {
                 trash.add(bullet);
             }
             bullet.x += 50 * screenRatioX;
+
+            for (Bird bird : birds) {
+
+                if (Rect.intersects(bird.getCollisionShape(), bullet.getCollisionShape())) {
+                    bird.x = -500;
+                    bullet.x = screenX + 500;
+                    bird.wasShot = true;
+                }
+
+            }
         }
 
 
@@ -129,6 +139,11 @@ public class GameView extends SurfaceView implements Runnable {
 
             if (bird.x + bird.width < 0) {
 
+                if (!bird.wasShot) {
+                    isGameOver = true;
+                    return;
+                }
+
                 int bound = (int) (30 * screenRatioX);
                 bird.speed = random.nextInt(bound);
 
@@ -138,6 +153,9 @@ public class GameView extends SurfaceView implements Runnable {
 
                 bird.x = screenX;
                 bird.y = random.nextInt(screenY - bird.height);
+
+
+                bird.wasShot = false;
 
             }
 
@@ -166,6 +184,10 @@ public class GameView extends SurfaceView implements Runnable {
                 getHolder().unlockCanvasAndPost(canvas);
                 return;
 
+            }
+
+            for (Bird bird : birds) {
+                canvas.drawBitmap(bird.getBird(), bird.x, bird.y, paint);
             }
 
             canvas.drawBitmap(flight.getFlight(), flight.x, flight.y, paint);
