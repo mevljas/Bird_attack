@@ -6,6 +6,9 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameView extends SurfaceView implements Runnable {
 
     private Thread thread;
@@ -18,6 +21,7 @@ public class GameView extends SurfaceView implements Runnable {
     private int screenX, screenY;
     public static float screenRatioX, screenRatioY; // for compatibility
     private Paint paint;
+    private List<Bullet> bullets;
     private Flight flight;
     private Background background1, background2;
 
@@ -36,7 +40,10 @@ public class GameView extends SurfaceView implements Runnable {
         background1 = new Background(screenX, screenY, getResources());
         background2 = new Background(screenX, screenY, getResources());
 
-        flight = new Flight(screenY, getResources());
+        flight = new Flight(this, screenY, getResources());
+
+
+        bullets = new ArrayList<>();
 
         background2.x = screenX;
 
@@ -156,5 +163,11 @@ public class GameView extends SurfaceView implements Runnable {
     }
 
     public void newBullet() {
+
+        Bullet bullet = new Bullet(getResources());
+        bullet.x = flight.x + flight.width;
+        bullet.y = flight.y + (flight.height / 2);
+        bullets.add(bullet);
+
     }
 }
