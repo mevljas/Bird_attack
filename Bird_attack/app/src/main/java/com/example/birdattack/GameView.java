@@ -93,6 +93,22 @@ public class GameView extends SurfaceView implements Runnable {
             flight.y = screenY - flight.height;
         }
 
+        List<Bullet> trash = new ArrayList<>();
+
+        for (Bullet bullet : bullets) {
+
+            if (bullet.x > screenX) {
+                trash.add(bullet);
+            }
+            bullet.x += 50 * screenRatioX;
+        }
+
+
+        for (Bullet bullet : trash) {
+
+            bullets.remove(bullet);
+        }
+
 
     }
 
