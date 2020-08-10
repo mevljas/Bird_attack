@@ -3,6 +3,7 @@ package com.example.birdattack;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 
@@ -18,7 +19,7 @@ public class GameView extends SurfaceView implements Runnable {
         super(context);
     }
 
-    private boolean isPlaying;
+    private boolean isPlaying, isGameOver = false;
     private int screenX, screenY;
     public static float screenRatioX, screenRatioY; // for compatibility
     private Paint paint;
@@ -140,7 +141,12 @@ public class GameView extends SurfaceView implements Runnable {
 
             }
 
-            //if (Rect.intersects())
+            if (Rect.intersects(bird.getCollisionShape(), flight.getCollisionShape())) {
+                isGameOver = true;
+
+                return;
+
+            }
         }
 
 

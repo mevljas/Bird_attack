@@ -3,6 +3,7 @@ package com.example.birdattack;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 
 import static com.example.birdattack.GameView.screenRatioX;
 import static com.example.birdattack.GameView.screenRatioY;
@@ -99,5 +100,9 @@ public class Flight {
         wingCounter--;
 
         return flight2;
+    }
+
+    Rect getCollisionShape() {
+        return new Rect(x, y, x + width, y + height);
     }
 }
