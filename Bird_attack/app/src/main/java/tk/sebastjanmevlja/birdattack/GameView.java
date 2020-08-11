@@ -1,4 +1,4 @@
-package com.example.birdattack;
+package tk.sebastjanmevlja.birdattack;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +13,8 @@ import android.media.SoundPool;
 import android.os.Build;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
+
+import com.example.birdattack.R;
 
 import java.util.ArrayList;
 import java.util.List;

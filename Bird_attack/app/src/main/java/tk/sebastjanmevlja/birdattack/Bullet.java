@@ -1,12 +1,11 @@
-package com.example.birdattack;
+package tk.sebastjanmevlja.birdattack;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 
-import static com.example.birdattack.GameView.screenRatioX;
-import static com.example.birdattack.GameView.screenRatioY;
+import com.example.birdattack.R;
 
 public class Bullet {
 
@@ -23,8 +22,8 @@ public class Bullet {
         width /= 4;
         height /= 4;
 
-        width = (int) (width * screenRatioX);
-        height = (int) (height * screenRatioY);
+        width = (int) (width * GameView.screenRatioX);
+        height = (int) (height * GameView.screenRatioY);
 
         bullet = Bitmap.createScaledBitmap(bullet, width, height, false);
     }

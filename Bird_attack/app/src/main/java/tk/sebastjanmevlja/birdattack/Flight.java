@@ -1,12 +1,11 @@
-package com.example.birdattack;
+package tk.sebastjanmevlja.birdattack;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 
-import static com.example.birdattack.GameView.screenRatioX;
-import static com.example.birdattack.GameView.screenRatioY;
+import com.example.birdattack.R;
 
 public class Flight {
 
@@ -29,8 +28,8 @@ public class Flight {
         width /= 4;
         height /= 4;
 
-        width *= screenRatioX;
-        height *= screenRatioY;
+        width *= GameView.screenRatioX;
+        height *= GameView.screenRatioY;
 
 
         flight1 = Bitmap.createScaledBitmap(flight1, width, height, false);
@@ -53,7 +52,7 @@ public class Flight {
 
 
         y = screenY / 2;
-        x = (int) (64 * screenRatioX);
+        x = (int) (64 * GameView.screenRatioX);
 
     }
 

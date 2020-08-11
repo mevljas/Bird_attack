@@ -1,4 +1,4 @@
-package com.example.birdattack;
+package tk.sebastjanmevlja.birdattack;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.birdattack.R;
 
 import java.util.Locale;
 

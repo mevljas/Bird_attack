@@ -1,4 +1,4 @@
-package com.example.birdattack;
+package tk.sebastjanmevlja.birdattack;
 
 import android.graphics.Point;
 import android.os.Bundle;
