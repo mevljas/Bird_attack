@@ -28,8 +28,8 @@ public class Bird {
         width /= 6;
         height /= 6;
 
-        width *= (int) screenRatioX;
-        height *= (int) screenRatioY;
+        width = (int) (width * screenRatioX);
+        height = (int) (height * screenRatioY);
 
         bird1 = Bitmap.createScaledBitmap(bird1, width, height, false);
         bird2 = Bitmap.createScaledBitmap(bird2, width, height, false);
@@ -44,25 +44,29 @@ public class Bird {
 
     Bitmap getBird() {
 
-        if (birdCounter == 1) {
-            birdCounter++;
-            return bird1;
+
+        switch (birdCounter) {
+
+            case 1:
+                birdCounter++;
+                return bird1;
+
+
+            case 2:
+                birdCounter++;
+                return bird2;
+
+            case 3:
+                birdCounter++;
+                return bird3;
+
+            default:
+                birdCounter = 1;
+                return bird4;
+
         }
 
 
-        if (birdCounter == 2) {
-            birdCounter++;
-            return bird2;
-        }
-
-        if (birdCounter == 3) {
-            birdCounter++;
-            return bird3;
-        }
-
-        birdCounter = 1;
-
-        return bird4;
     }
 
     Rect getCollisionShape() {
