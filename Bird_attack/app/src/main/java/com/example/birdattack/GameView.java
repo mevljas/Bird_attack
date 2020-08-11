@@ -88,7 +88,7 @@ public class GameView extends SurfaceView implements Runnable {
         background2.x = screenX;
 
         paint = new Paint();
-        paint.setTextSize(128);
+        paint.setTextSize(150 * screenRatioX);
         paint.setColor(Color.WHITE);
 
         birds = new Bird[4];
@@ -137,8 +137,8 @@ public class GameView extends SurfaceView implements Runnable {
             flight.y += 30 * screenRatioY;
         }
 
-        if (flight.y < 0) {
-            flight.y = 0;
+        if (flight.y <= 0) {
+            flight.y = 1;
         }
 
         if (flight.y > screenY - flight.height) {
@@ -295,27 +295,44 @@ public class GameView extends SurfaceView implements Runnable {
 
     }
 
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getAction()) {
+
+
+        int action = event.getAction() & MotionEvent.ACTION_MASK;
+        int pointerIndex = (event.getAction() & MotionEvent.ACTION_POINTER_INDEX_MASK) >> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
+
+        switch (action) {
             case MotionEvent.ACTION_DOWN:
-                if (event.getX() < screenX / 2) {
+            case MotionEvent.ACTION_POINTER_DOWN:
+
+                if (event.getX(pointerIndex) < screenX / 2) {
                     flight.isGoingUp = true;
                 }
 
-                break;
-
-            case MotionEvent.ACTION_UP:
-
-                flight.isGoingUp = false;
-                if (event.getX() > screenX / 2) {
+                if (event.getX(pointerIndex) > screenX / 2) {
                     flight.toShoot++;
                 }
                 break;
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_POINTER_UP:
+            case MotionEvent.ACTION_CANCEL:
+                if (event.getX(pointerIndex) < screenX / 2) {
+                    flight.isGoingUp = false;
+                }
+                break;
+            case MotionEvent.ACTION_MOVE:
+                int pointerCount = event.getPointerCount();
+                for (int i = 0; i < pointerCount; i++) {
+                }
+                break;
         }
-
         return true;
+
+
     }
+
 
     public void newBullet() {
 

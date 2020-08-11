@@ -62,26 +62,26 @@ public class Flight {
 
         if (toShoot != 0) {
 
-            if (shootCounter == 1) {
-                shootCounter++;
-                return shoot1;
+            switch (shootCounter) {
+                case 1:
+                    shootCounter++;
+                    return shoot1;
+
+                case 2:
+                    shootCounter++;
+                    return shoot2;
+
+                case 3:
+                    shootCounter++;
+                    return shoot3;
+
+                case 4:
+                    shootCounter++;
+                    return shoot4;
+
+
             }
 
-            if (shootCounter == 2) {
-                shootCounter++;
-                return shoot2;
-            }
-
-
-            if (shootCounter == 3) {
-                shootCounter++;
-                return shoot3;
-            }
-
-            if (shootCounter == 4) {
-                shootCounter++;
-                return shoot4;
-            }
 
             shootCounter = 1;
             toShoot--;
