@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Bird attack</string>
+    <string name="background_image">background image</string>
+    <string name="play_button">Play</string>
+    <string name="high_score">High score</string>
+    <string name="volume_button">Volume button</string>
+    <string name="instructions">Fly the plane by tappin on the left side of the screen. Shoot at the enemies by tapping on the right side of the screen.</string>
 </resources>

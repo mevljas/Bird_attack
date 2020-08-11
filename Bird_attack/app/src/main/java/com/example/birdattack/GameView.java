@@ -63,6 +63,7 @@ public class GameView extends SurfaceView implements Runnable {
                     .build();
 
         } else {
+            //noinspection deprecation
             soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
         }
 
@@ -307,26 +308,22 @@ public class GameView extends SurfaceView implements Runnable {
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_POINTER_DOWN:
 
-                if (event.getX(pointerIndex) < screenX / 2) {
+                if (event.getX(pointerIndex) < screenX / 2f) {
                     flight.isGoingUp = true;
                 }
 
-                if (event.getX(pointerIndex) > screenX / 2) {
+                if (event.getX(pointerIndex) > screenX / 2f) {
                     flight.toShoot++;
                 }
                 break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_POINTER_UP:
             case MotionEvent.ACTION_CANCEL:
-                if (event.getX(pointerIndex) < screenX / 2) {
+                if (event.getX(pointerIndex) < screenX / 2f) {
                     flight.isGoingUp = false;
                 }
                 break;
-            case MotionEvent.ACTION_MOVE:
-                int pointerCount = event.getPointerCount();
-                for (int i = 0; i < pointerCount; i++) {
-                }
-                break;
+
         }
         return true;
 

@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
 
     private boolean isMute;
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         TextView highScoreTxt = findViewById(R.id.highScoreTxt);
 
         final SharedPreferences pref = getSharedPreferences("game", MODE_PRIVATE);
-        highScoreTxt.setText("HighScore: " + pref.getInt("highscore", 0));
+        highScoreTxt.setText(String.format(Locale.US, "HighScore: %d", pref.getInt("highscore", 0)));
 
         pref.getBoolean("isMute", false);
 
