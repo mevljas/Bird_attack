@@ -159,8 +159,8 @@ public class GameView extends SurfaceView implements Runnable {
                 if (Rect.intersects(bird.getCollisionShape(), bullet.getCollisionShape())) {
 
                     score++;
-                    bird.x = -500;
-                    bullet.x = screenX + 500;
+                    bird.x = -2000;
+                    bullet.x = screenX + 2000;
                     bird.wasShot = true;
                 }
 
